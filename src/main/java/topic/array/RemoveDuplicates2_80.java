@@ -19,12 +19,41 @@ package topic.array;
  * If all assertions pass, then your solution will be accepted.
  */
 public class RemoveDuplicates2_80 {
-    public int removeDuplicates(int[] nums) {
-        // todo 居然还不可以用额外内存，写完需求继续
-        return 0;
+    public static int removeDuplicates(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+
+        int i = 0;
+        int count = 1;
+        for (int j = 1; j < nums.length; j++) {
+            if (nums[j] < nums[i]) {
+                continue;
+            }
+
+            if (nums[j] != nums[i]) {
+                i++;
+                nums[i] = nums[j];
+                count = 1;
+            } else {
+                if (count < 2) {
+                    i++;
+                    nums[i] = nums[j];
+                    count++;
+                }
+            }
+        }
+        return i + 1;
     }
 
     public static void main(String[] args) {
-        System.out.println("test");
+        System.out.println("===============test 1===============");
+        int[] nums = {0,0,1,1,1,1,2,3,3};
+        System.out.println("resp = " + removeDuplicates(nums));
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < nums.length; i++) {
+            sb.append(nums[i] + " ");
+        }
+        System.out.println("nums = " + sb.toString());
     }
 }
