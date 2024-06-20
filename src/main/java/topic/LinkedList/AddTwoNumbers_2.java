@@ -1,4 +1,4 @@
-package topic.linkedlist;
+package topic.LinkedList;
 
 import module.ListNode;
 
